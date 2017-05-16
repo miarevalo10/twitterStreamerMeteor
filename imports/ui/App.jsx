@@ -2,13 +2,17 @@ import React, {Component} from "react";
 import {PropTypes} from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { createContainer} from "meteor/react-meteor-data"
-
+import {ColombiaMap} from "./ColombiaMap";
+import {Overlay} from "./Overlay";
 import TweetsResults from "./TweetsResults.jsx";
 import {Tweets} from "../api/Tweets.js";
 
 export class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      projection:null;
+    }
 
   }
 
@@ -24,11 +28,22 @@ export class App extends Component {
 
   }
 
+  setProj(proj){
+    this.setState({
+        projection: proj
+      });
+  }
+
+  getProj(){
+      return this.projection;
+  }
 
   render() {
     console.log("render!");
     return (
       <div>
+        <ColombiaMap setProj={this.props.setProj.bind(this)}/>
+      <Overlay getProj={this.props.getProj.bind(this)}/>
         <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
