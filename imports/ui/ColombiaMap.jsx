@@ -33,6 +33,7 @@ export default class ColombiaMap extends Component {
 		  .translate([width / 2, height / 2]);
 
 		this.props.setProj(this.projection);
+		console.log("en CM"+this.projection);
 
 		var path = d3.geo.path()
 		  .projection(this.projection);

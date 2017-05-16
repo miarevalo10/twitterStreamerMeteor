@@ -29,6 +29,12 @@ if (Meteor.isServer) {
         access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
         access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
       });
+      // let client = new Twitter({
+      //   consumer_key: 'ks88JsMgq9KormH1yHXOvIc6K',
+      //   consumer_secret: 'VjHbBmkmGyCweLCj2huBzz9WixiOgJhIEtNFXgWhQmirYtPveO',
+      //   access_token_key: '824117703195693056-hc4r1kKhjP3TDW06l878nXZjebXT1PJ',
+      //   access_token_secret: 'x10N68MSXw26iqWNIW7e4hGeA5xLGfvwKtFWTJkPrJDWZ'
+      // });
 
       if (stream) {
         console.log("Stopping previous stream");
@@ -41,7 +47,12 @@ if (Meteor.isServer) {
       stream = client.stream("statuses/filter", {track: query, locations:locations});
       stream.on("data", Meteor.bindEnvironment(function(tweet) {
         // resolve(tweet);
-        Tweets.insert(tweet);
+        if(tweet.coordinates)
+        {
+          Tweets.insert(tweet);
+
+        }
+
       }));
 
       stream.on("error", function(error) {

@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+#overlay{
+  position: :absolute;
+  z-index:1;
+  pointer-events: none;
+}
