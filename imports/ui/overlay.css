@@ -1,0 +1,18 @@
+
+.colombiaMap{
+  position: relative;
+}
+
+.overCanvas{
+  position: absolute;
+  top:0px;
+  pointer-events: none;
+
+}
+
+/*.overCanvas{
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+
+}*/

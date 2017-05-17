@@ -43,12 +43,7 @@ export class App extends Component {
     return (
       <div>
 
-        <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
-        { this.props && this.props.err ?
-          <div>Error: {this.props.err}</div> :
-          <span></span>
-        }
-        <h2>Results:</h2>
+
         {this.props && this.props.tweets ?
             <div>
               <ColombiaMap setProj={this.setProj.bind(this)} width='600' height='600' data={{RISARALDA:10}}/>
@@ -56,9 +51,13 @@ export class App extends Component {
               <TweetsResults tweets={this.props.tweets}/> :
             </div>:
             <p>Enter a query</p>
-
-
         }
+        <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
+        { this.props && this.props.err ?
+          <div>Error: {this.props.err}</div> :
+          <span></span>
+        }
+        {/* <h2>Results:</h2> */}
 
       </div>
     );
